@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+        .admin-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .admin-container h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .user-list {
+            margin-top: 20px;
+        }
+        .user-card {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .user-card h3 {
+            margin: 0;
+            color: #007bff;
+        }
+        .user-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .logout-link {
+            color: #007bff;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h2>Admin Panel</h2>
+
+        <div class="chart-container">
+            <canvas id="sessionChart"></canvas>
+        </div>
+
+        <div class="user-list">
+            {% for user in users %}
+            <div class="user-card">
+                <h3>{{ user.username }}</h3>
+                <p>Age: {{ user.age }}</p>
+                <p>Height: {{ user.height }} cm</p>
+                <p>Weight: {{ user.weight }} kg</p>
+                <p>Blood Group: {{ user.blood_group }}</p>
+                <p>Total Sessions: {{ user.sessions|length }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="logout-link" onclick="window.location.href='/logout'">Logout</div>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('sessionChart').getContext('2d');
+        var sessionChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [{% for user in users %}"{{ user.username }}", {% endfor %}],
+                datasets: [{
+                    label: 'Total Sessions',
+                    data: [{% for user in users %}{{ user.sessions|length }}, {% endfor %}],
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+    "users": {
+        "alfy mathew": {
+            "username": "alfy mathew",
+            "password": "scrypt:32768:8:1$8Zv9r6BavkzdSV5C$0378f56b9d6aac1c3960fe5ee23a520eb7e406864dec577bd0c4c6942ef3fc51c1e229980af23c45e5973f6104488b68ae20cbc1489997110dfd16b25ae20d90",
+            "age": "23",
+            "height": "189",
+            "weight": "74",
+            "blood_group": "O+",
+            "sessions": []
+        },
+        "athul": {
+            "username": "athul",
+            "password": "scrypt:32768:8:1$DNqsJ2HH7BXtWc4g$aa1fe6def30214e8bf02985ed5fdfa6b91d7e813444099f75011a742a47086604cd4fcfe8d2d1c8856fe07086582ff8ebee641b92e528573822eb2e0d3c0a6ae",
+            "age": "36",
+            "height": "46",
+            "weight": "96",
+            "blood_group": "8",
+            "sessions": []
+        }
+    }
+}
